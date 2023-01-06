@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ItAssetManagement.Models.Asset>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<div class="text-end">
+    <a asp-action="AddUser" class="btn btn-success">Add User</a> |
+    <a asp-action="AddAsset" class="btn btn-success">Add Asset</a>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchasedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssetType)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.EnteredBy)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchasedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssetType)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnteredBy)
+                </td>
+                <td>
+                    <a asp-action="ViewAsset" asp-route-id="@item.Id" class="btn btn-primary">View</a> |
+                    <a asp-action="EditAsset" asp-route-id="@item.Id" class="btn btn-info">Edit</a> |
+                    <a asp-action="DeleteAssset" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,57 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">IT ASSET MANAGEMENT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        @{
+                            if (ViewBag.Nav == "Admin")
+                            {
+                                 <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="Admin">Home</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" asp-action="AssetRequests" asp-controller="Admin">Asset Requests</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="logout" asp-controller="Home">Logout</a>
+                                </li>
+                            }
+
+                            if (ViewBag.Nav == "Main")
+                            {
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="login" asp-controller="Home">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="register" asp-controller="Home">Register</a>
+                                </li>
+
+                            }
+
+                            if (ViewBag.Nav == "User")
+                            {
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="MyAssets" asp-controller="User">My Assets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="Index" asp-controller="User">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-action="logout" asp-controller="Home">Logout</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+}

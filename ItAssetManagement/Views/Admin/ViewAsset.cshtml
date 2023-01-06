@@ -1,0 +1,57 @@
+﻿@model ItAssetManagement.Models.Asset
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+	ViewData["Title"] = "ViewAsset";
+	Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+
+<div>
+	<div class="row text-center">
+		<h4 class="display-5">Asset Details</h4>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col col-md-12 text-end">
+		<a asp-action="AssetRequests" class="btn btn-primary" asp-controller="Admin">Back To Requests</a>
+		</div>
+	</div>
+	<dl class="row">
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.PurchasedDate)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.PurchasedDate)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.SerialNo)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.SerialNo)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.AssetType)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.AssetType)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.DurationType)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.DurationType)
+		</dd>
+		<dt class = "col-sm-2">
+			@Html.DisplayNameFor(model => model.EnteredBy)
+		</dt>
+		<dd class = "col-sm-10">
+			@Html.DisplayFor(model => model.EnteredBy)
+		</dd>
+	</dl>
+</div>

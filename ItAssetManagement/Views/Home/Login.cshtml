@@ -1,0 +1,46 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model ItAssetManagement.Models.User
+@{
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<h1 class="text-center">Login</h1>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card border-primary mb-4">
+            <div class="card-header">
+                @{
+                    if (ViewBag.Fields == 1)
+                    {
+                        <div class="alert alert-danger" role="alert">Please Fill All The Fields</div>
+                    }
+                    if (ViewBag.Error == 1)
+                    {
+                        <div class="alert alert-danger" role="alert">Invalid Email Or Password</div>
+                    }
+                }
+            </div>
+            <div class="card-body">
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Your Email Adress Here" name="Email" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Your Password Here" name="Password" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group text-center mt-4">
+                        <input type="submit" value="Login" class="btn btn-primary w-50" />
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>

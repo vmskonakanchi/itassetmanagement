@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ItAssetManagement.Models.Asset>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="display-6 text-center">Request Asset</div>
+    <div class="col-md-4">
+        <div class="list-group">
+            <a class="list-group-item active" aria-current="true">Available AssetTypes</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="0" asp-action="SelectAsset">PC</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="1" asp-action="SelectAsset">LAPTOP</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="2" asp-action="SelectAsset">MONITOR</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="3" asp-action="SelectAsset">MOUSE</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="4" asp-action="SelectAsset">PEN DRIVE</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="5" asp-action="SelectAsset">EXTERNAL HDD</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="6" asp-action="SelectAsset">WEB CAMERA</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="7" asp-action="SelectAsset">HEADPHONES</a>
+            <a class="list-group-item list-group-item-action" asp-route-selected="8" asp-action="SelectAsset">MOBILE PHONE</a>
+        </div>
+    </div>
+    @{
+        if (Model.Count() > 0)
+        {
+                        <div class="col-md-8">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                @{
+                                    if(ViewBag.RedirectError != null){
+                                    <div class="alert alert-danger">The Asset is already requested by you</div>
+                                }
+                                }
+                                <form asp-action="RequestAsset" method="post">
+                                    <div class="form-group">
+                                        <label for="name">Select Name Of The Asset</label>
+                                        <select class="form-select" name="name" required>
+                                    @{
+
+                                        foreach (var item in Model)
+                                        {
+                                             <option value="@item.Name">@item.Name</option>
+                                        }
+                                    }
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="duration" class="control-label">Select Duration Of Asset</label>
+                                        <select class="form-select" id="duration" name="type" required onchange="changeDate()">
+                                            <option value="0">TEMPORARY</option>
+                                            <option value="1">PERMENANT</option>
+                                        </select>
+                                    </div>
+                                    <div id="date">
+                                        <div class="form-group">
+                                            <label for="fromDate">FromDate</label>
+                                            <input type="date" id="fromDate" class="form-control" name="fromDate"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="toDate">ToDate</label>
+                                            <input type="date" id="toDate" class="form-control" name="toDate" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <button type="submit" class="btn btn-primary w-50 mb-3 mt-2">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        }
+        else
+        {
+                     <div class="col-md-8">
+                        <div class="display-5 mt-5">No Assets Are There For This Type</div>
+                    </div>
+
+                    
+        }
+    }
+</div>
+
+<script>
+  window.onload = () => {
+      if(document.getElementById("date") != null){
+        document.getElementById("date").hidden = true;
+      }
+  }
+
+function changeDate() {
+    let duration = document.getElementById("duration");
+    let durationValue = duration.value;
+    if (durationValue == "1") {
+        document.getElementById("date").hidden = true;
+    } else {
+        document.getElementById("date").hidden = false;
+       }
+    }
+</script>
+
+
